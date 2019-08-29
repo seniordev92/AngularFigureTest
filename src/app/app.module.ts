@@ -1,13 +1,25 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { StoreModule } from '@ngrx/store';
+import { FigureReducer } from './figure.reducer';
+import { FigureOptionComponent } from './figure-option/figure-option.component';
+import { FigureDisplayComponent } from './figure-display/figure-display.component';
+import { SelectTagComponent } from './components/select-tag/select-tag.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HelloComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [
+    AppComponent,
+    FigureOptionComponent,
+    FigureDisplayComponent,
+    SelectTagComponent
+  ],
+  imports: [
+    BrowserModule,
+    StoreModule.forRoot({ figure: FigureReducer })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

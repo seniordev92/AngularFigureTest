@@ -1,0 +1,7 @@
+<label for="inputState">{{selectTitle}}</label>
+<select id="inputState" class="form-control" (change)="selectOption($event.target.value)">
+  <option selected>Choose...</option>
+  <option *ngFor="let color of options" title="{{color.label}}" >
+    {{color.value}}
+  </option>
+</select>
