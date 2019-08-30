@@ -3,7 +3,7 @@ export interface FigureData {
   shape: string;
 }
 
-export const initialChartData: FigureData = {
+export const initialState: FigureData = {
   color: '',
   shape: ''
 };

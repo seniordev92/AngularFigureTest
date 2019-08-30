@@ -1,8 +1,8 @@
 import { ActionEx, FigureActionTypes } from './figure.actions';
-import { initialChartData, FigureData } from './figure.state';
+import { initialState, FigureData } from './figure.state';
 
 export function FigureReducer(
-  oldState: FigureData = initialChartData,
+  oldState: FigureData = initialState,
   action: ActionEx
 ) {
   switch (action.type) {
