@@ -7,7 +7,7 @@ import { Figure } from '../models/figure';
 
 @Component({
   selector: 'app-figure-display',
-  template: './figure-display.component.html',
+  templateUrl: './figure-display.component.html',
   styleUrls: ['./figure-display.component.scss']
 })
 export class FigureDisplayComponent implements OnInit, OnDestroy {
