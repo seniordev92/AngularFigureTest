@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as d3 from 'd3';
 
 import { Figure } from '../models/figure';
 
 @Component({
   selector: 'app-figure-display',
-  templateUrl: './figure-display.component.html',
+  template: './figure-display.component.html',
   styleUrls: ['./figure-display.component.scss']
 })
-export class FigureDisplayComponent implements OnInit {
+export class FigureDisplayComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
   figure: Observable<Figure>;
   figureColor$: Observable<string>;
   figureShape$: Observable<string>;
@@ -21,16 +23,20 @@ export class FigureDisplayComponent implements OnInit {
     this.figureShape$ = store.pipe(select('figure', 'shape'));
   }
   ngOnInit() {
-    this.figureShape$.subscribe(res => {
+    const shapeSubscription = this.figureShape$.subscribe(res => {
       this.shape = res;
       this.setFigure();
     });
-    this.figureColor$.subscribe(res => {
+    this.subscription.add(shapeSubscription);
+    const scolorSubscription = this.figureColor$.subscribe(res => {
       this.color = res;
       this.setFigure();
     });
+    this.subscription.add(scolorSubscription);
   }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   setFigure() {
     const xScale = d3
       .scaleLinear()
