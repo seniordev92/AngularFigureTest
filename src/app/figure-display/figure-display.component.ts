@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import * as d3 from 'd3';
+import { UndoActions } from 'ngrx-undo-redo';
 
 import { Figure } from '../models/figure';
 
@@ -36,6 +37,12 @@ export class FigureDisplayComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  undo() {
+    this.store.dispatch({ type: 'UNDO_STATE' } as UndoActions);
+  }
+  redo() {
+    this.store.dispatch({ type: 'REDO_STATE' } as UndoActions);
   }
   setFigure() {
     const xScale = d3

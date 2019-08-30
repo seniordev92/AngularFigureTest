@@ -8,4 +8,14 @@
     display: flex;
   }
 }
-
+.description {
+  margin-top: 8px;
+  font-size: 18px;
+  color: #1665a0;
+}
+.history {
+  button {
+    margin: 8px;
+    border: solid 1px #000;
+  }
+}

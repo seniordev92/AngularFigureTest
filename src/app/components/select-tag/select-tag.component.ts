@@ -16,7 +16,6 @@ export class SelectTagComponent implements OnInit {
 
   ngOnInit() {}
   selectOption(value) {
-    console.log(this.selectTitle)
     if (this.selectTitle === 'Shape') {
       this.selectShape(value);
     }
@@ -25,11 +24,9 @@ export class SelectTagComponent implements OnInit {
     }
   }
   selectColor(value) {
-    console.log(value)
     this.store.dispatch(new SetColor(value));
   }
   selectShape(value) {
-    console.log(value)
     this.store.dispatch(new SetShape(value));
   }
 }
